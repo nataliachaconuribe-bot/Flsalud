@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>Consultas médicas</h1>
+</header>
+
+<div class="two">
+
+    <section class="panel">
+        <h2>Registrar consulta</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn">Guardar consulta</button>
+        </form>
+    </section>
+
+    <section class="panel">
+        <h2>Historial</h2>
+
+        {% for c in consultations %}
+        <div class="row">
+            <div>
+                <b>{{ c.appointment.patient }}</b><br>
+                <span class="muted">{{ c.diagnosis|truncatechars:60 }}</span>
+            </div>
+
+            {% if c.certificate %}
+                <a class="btn secondary" href="{% url 'certificate_pdf' c.certificate.pk %}">Ver PDF</a>
+            {% else %}
+                <form method="post" action="{% url 'create_certificate' c.pk %}">
+                    {% csrf_token %}
+                    <button class="btn">Generar constancia</button>
+                </form>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p class="muted">No hay consultas.</p>
+        {% endfor %}
+    </section>
+
+</div>
+{% endblock %}

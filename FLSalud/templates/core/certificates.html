@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>Constancias</h1>
+</header>
+
+<section class="panel">
+    <table>
+        <tr>
+            <th>Código</th>
+            <th>Paciente</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+
+        {% for c in certificates %}
+        <tr>
+            <td>{{ c.unique_code }}</td>
+            <td>{{ c.consultation.appointment.patient }}</td>
+            <td>{{ c.admission_date }}</td>
+            <td>
+                <a class="btn" href="{% url 'certificate_pdf' c.pk %}">PDF</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No hay constancias.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}

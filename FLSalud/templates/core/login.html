@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="auth">
+    <div class="panel">
+        <h1>FLSalud</h1>
+        <h2>Iniciar sesión</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label>Usuario</label>
+            <input name="username" required>
+
+            <label>Contraseña</label>
+            <input type="password" name="password" required>
+
+            <button class="btn">Ingresar</button>
+        </form>
+
+        <p class="muted">
+            ¿Olvidaste tu contraseña? Usa la recuperación configurada por el administrador.
+        </p>
+    </div>
+</div>
+{% endblock %}

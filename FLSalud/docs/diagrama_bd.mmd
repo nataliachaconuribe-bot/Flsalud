@@ -1,0 +1,66 @@
+erDiagram
+    USER ||--o| PATIENT : "perfil (opcional)"
+    USER ||--|| DOCTOR : "perfil"
+    USER ||--|| RECEPTIONIST : "perfil"
+    PATIENT ||--o{ APPOINTMENT : "solicita"
+    DOCTOR ||--o{ APPOINTMENT : "atiende"
+    APPOINTMENT ||--o| CONSULTATION : "genera"
+    CONSULTATION ||--o| CERTIFICATE : "emite"
+
+    USER {
+        int id PK
+        string username UK
+        string first_name
+        string last_name
+        string email
+        string password
+    }
+    PATIENT {
+        int id PK
+        int user_id FK "OneToOne, null"
+        string phone
+        date birth_date "null"
+        text medical_history
+    }
+    DOCTOR {
+        int id PK
+        int user_id FK "OneToOne"
+        string professional_id UK
+        bool available "default True"
+    }
+    RECEPTIONIST {
+        int id PK
+        int user_id FK "OneToOne"
+        string phone
+    }
+    APPOINTMENT {
+        int id PK
+        int patient_id FK
+        int doctor_id FK
+        date date
+        time time
+        int duration "default 30 min"
+        string status "PENDIENTE|CONFIRMADA|ATENDIDA|CANCELADA"
+        datetime created_at
+    }
+    CONSULTATION {
+        int id PK
+        int appointment_id FK "OneToOne"
+        text diagnosis
+        text symptoms
+        text observations
+        decimal weight "null"
+        string blood_pressure
+        decimal temperature "null"
+        text prescription
+        datetime created_at
+    }
+    CERTIFICATE {
+        int id PK
+        int consultation_id FK "OneToOne"
+        string unique_code UK
+        datetime admission_date
+        text text
+        text recipe
+        text medical_history
+    }

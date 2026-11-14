@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>{% if role == 'staff' %}Citas de hoy{% else %}Citas{% endif %}</h1>
+    {% if role == 'admin' or role == 'receptionist' %}
+    <div>
+        <a class="btn secondary" href="{% url 'availability' %}">Ver disponibilidad</a>
+        <a class="btn" href="{% url 'create_appointment' %}">+ Nueva cita</a>
+    </div>
+    {% endif %}
+</header>
+
+<section class="panel">
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Estado</th>
+            {% if role == 'admin' or role == 'receptionist' %}<th></th>{% endif %}
+        </tr>
+
+        {% for a in appointments %}
+        <tr>
+            <td>{{ a.date }}</td>
+            <td>{{ a.time }}</td>
+            <td>{{ a.patient }}</td>
+            <td>{{ a.doctor }}</td>
+            <td>{{ a.status }}</td>
+            {% if role == 'admin' or role == 'receptionist' %}
+            <td>
+                {% if a.status == 'PENDIENTE' %}
+                <form method="post" action="{% url 'confirm_appointment' a.pk %}">
+                    {% csrf_token %}
+                    <button class="btn secondary">CONFIRMAR</button>
+                </form>
+                {% elif a.status == 'CONFIRMADA' %}
+                <form method="post" action="{% url 'mark_attended' a.pk %}">
+                    {% csrf_token %}
+                    <button class="btn">CHECK</button>
+                </form>
+                {% endif %}
+            </td>
+            {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No hay citas{% if role == 'staff' %} para hoy{% endif %}.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% include 'core/_pagination.html' with page=appointments %}
+</section>
+{% endblock %}

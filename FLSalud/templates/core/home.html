@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<nav class="public">
+    <b>♥ FLSalud</b>
+    <span>Inicio · Servicios · Sobre nosotros</span>
+    <a href="{% url 'login' %}" class="btn">Iniciar sesión</a>
+</nav>
+
+<section class="hero">
+    <div>
+        <h1>Agenda tus citas médicas<br>de forma fácil y rápida</h1>
+        <p>
+            FLSalud permite gestionar citas médicas generales con
+            profesionales disponibles y un sistema organizado.
+        </p>
+        <a class="btn" href="{% url 'login' %}">Agendar cita</a>
+    </div>
+
+    <div class="hero-card">
+        🩺<br>
+        <b>Atención médica general</b><br>
+        <small>Agenda · Consulta · Constancia</small>
+    </div>
+</section>
+
+<section class="features">
+    <div>
+        <h3>📅 Citas</h3>
+        <p>Asignación y reprogramación con validación de disponibilidad.</p>
+    </div>
+    <div>
+        <h3>🩺 Consultas</h3>
+        <p>Diagnóstico, síntomas, observaciones y signos vitales.</p>
+    </div>
+    <div>
+        <h3>📄 Constancias</h3>
+        <p>Generación e impresión en PDF.</p>
+    </div>
+</section>
+{% endblock %}

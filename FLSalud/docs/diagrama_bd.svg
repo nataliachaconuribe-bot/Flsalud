@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" font-family="Segoe UI,Arial,sans-serif" font-size="13">
+<rect width="1200" height="660" fill="#ffffff"/>
+<text x="20" y="22" font-size="18" font-weight="bold" fill="#111827">FLSalud — Diagrama de base de datos (ER)</text>
+<polyline points="220,281.0 260,281.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<polyline points="260,93.0 260,503.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<polyline points="260,93.0 300,93.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="266" y="88.0" fill="#374151" font-size="11">0..1</text>
+<polyline points="260,313.0 300,313.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="266" y="308.0" fill="#374151" font-size="11">1</text>
+<polyline points="260,503.0 300,503.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="266" y="498.0" fill="#374151" font-size="11">1</text>
+<text x="226" y="276.0" fill="#374151" font-size="11">1</text>
+<polyline points="520,71.0 560,71.0 560,193.0 620,193.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="524" y="66.0" font-size="11" fill="#374151">1</text><text x="598" y="188.0" font-size="11" fill="#374151">N</text>
+<polyline points="520,291.0 580,291.0 580,215.0 620,215.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="524" y="286.0" font-size="11" fill="#374151">1</text><text x="598" y="229.0" font-size="11" fill="#374151">N</text>
+<polyline points="840,171.0 890,171.0 890,193.0 940,193.0" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="844" y="166.0" font-size="11" fill="#374151">1</text><text x="912" y="188.0" font-size="11" fill="#374151">0..1</text>
+<polyline points="1055,380 1055,430" fill="none" stroke="#374151" stroke-width="1.6"/>
+<text x="1061" y="394" font-size="11" fill="#374151">1</text><text x="1061" y="424" font-size="11" fill="#374151">0..1</text>
+<text x="565" y="60" font-size="11" fill="#6b7280" font-style="italic">solicita</text>
+<text x="565" y="345" font-size="11" fill="#6b7280" font-style="italic">atiende</text>
+<text x="1063" y="410" font-size="11" fill="#6b7280" font-style="italic">emite</text>
+<text x="868" y="118" font-size="11" fill="#6b7280" font-style="italic">genera</text>
+<rect x="20" y="240" width="200" height="162" rx="6" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+<path d="M20,270 L20,246 Q20,240 26,240 L214,240 Q220,240 220,246 L220,270 Z" fill="#6b7280"/>
+<text x="120.0" y="260" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">User (auth_user)</text>
+<text x="30" y="285" fill="#111827" font-weight="bold">id</text>
+<text x="212" y="285" text-anchor="end" fill="#6b7280" font-size="11">PK</text>
+<rect x="21" y="292" width="198" height="22" fill="#f3f4f6"/>
+<text x="30" y="307" fill="#111827">username</text>
+<text x="212" y="307" text-anchor="end" fill="#6b7280" font-size="11">UK</text>
+<text x="30" y="329" fill="#111827">first_name</text>
+<rect x="21" y="336" width="198" height="22" fill="#f3f4f6"/>
+<text x="30" y="351" fill="#111827">last_name</text>
+<text x="30" y="373" fill="#111827">email</text>
+<rect x="21" y="380" width="198" height="22" fill="#f3f4f6"/>
+<text x="30" y="395" fill="#111827">password</text>
+<rect x="300" y="30" width="220" height="140" rx="6" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>
+<path d="M300,60 L300,36 Q300,30 306,30 L514,30 Q520,30 520,36 L520,60 Z" fill="#0f766e"/>
+<text x="410.0" y="50" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Patient</text>
+<text x="310" y="75" fill="#111827" font-weight="bold">id</text>
+<text x="512" y="75" text-anchor="end" fill="#0f766e" font-size="11">PK</text>
+<rect x="301" y="82" width="218" height="22" fill="#f3f4f6"/>
+<text x="310" y="97" fill="#111827">user_id</text>
+<text x="512" y="97" text-anchor="end" fill="#0f766e" font-size="11">FK·1:1 null</text>
+<text x="310" y="119" fill="#111827">phone</text>
+<rect x="301" y="126" width="218" height="22" fill="#f3f4f6"/>
+<text x="310" y="141" fill="#111827">birth_date</text>
+<text x="512" y="141" text-anchor="end" fill="#0f766e" font-size="11">null</text>
+<text x="310" y="163" fill="#111827">medical_history</text>
+<rect x="300" y="250" width="220" height="118" rx="6" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<path d="M300,280 L300,256 Q300,250 306,250 L514,250 Q520,250 520,256 L520,280 Z" fill="#1d4ed8"/>
+<text x="410.0" y="270" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Doctor</text>
+<text x="310" y="295" fill="#111827" font-weight="bold">id</text>
+<text x="512" y="295" text-anchor="end" fill="#1d4ed8" font-size="11">PK</text>
+<rect x="301" y="302" width="218" height="22" fill="#f3f4f6"/>
+<text x="310" y="317" fill="#111827">user_id</text>
+<text x="512" y="317" text-anchor="end" fill="#1d4ed8" font-size="11">FK·1:1</text>
+<text x="310" y="339" fill="#111827">professional_id</text>
+<text x="512" y="339" text-anchor="end" fill="#1d4ed8" font-size="11">UK</text>
+<rect x="301" y="346" width="218" height="22" fill="#f3f4f6"/>
+<text x="310" y="361" fill="#111827">available</text>
+<text x="512" y="361" text-anchor="end" fill="#1d4ed8" font-size="11">bool</text>
+<rect x="300" y="440" width="220" height="96" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="2"/>
+<path d="M300,470 L300,446 Q300,440 306,440 L514,440 Q520,440 520,446 L520,470 Z" fill="#7c3aed"/>
+<text x="410.0" y="460" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Receptionist</text>
+<text x="310" y="485" fill="#111827" font-weight="bold">id</text>
+<text x="512" y="485" text-anchor="end" fill="#7c3aed" font-size="11">PK</text>
+<rect x="301" y="492" width="218" height="22" fill="#f3f4f6"/>
+<text x="310" y="507" fill="#111827">user_id</text>
+<text x="512" y="507" text-anchor="end" fill="#7c3aed" font-size="11">FK·1:1</text>
+<text x="310" y="529" fill="#111827">phone</text>
+<rect x="620" y="130" width="220" height="206" rx="6" fill="#ffffff" stroke="#b45309" stroke-width="2"/>
+<path d="M620,160 L620,136 Q620,130 626,130 L834,130 Q840,130 840,136 L840,160 Z" fill="#b45309"/>
+<text x="730.0" y="150" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Appointment</text>
+<text x="630" y="175" fill="#111827" font-weight="bold">id</text>
+<text x="832" y="175" text-anchor="end" fill="#b45309" font-size="11">PK</text>
+<rect x="621" y="182" width="218" height="22" fill="#f3f4f6"/>
+<text x="630" y="197" fill="#111827">patient_id</text>
+<text x="832" y="197" text-anchor="end" fill="#b45309" font-size="11">FK</text>
+<text x="630" y="219" fill="#111827">doctor_id</text>
+<text x="832" y="219" text-anchor="end" fill="#b45309" font-size="11">FK</text>
+<rect x="621" y="226" width="218" height="22" fill="#f3f4f6"/>
+<text x="630" y="241" fill="#111827">date</text>
+<text x="630" y="263" fill="#111827">time</text>
+<rect x="621" y="270" width="218" height="22" fill="#f3f4f6"/>
+<text x="630" y="285" fill="#111827">duration</text>
+<text x="832" y="285" text-anchor="end" fill="#b45309" font-size="11">min</text>
+<text x="630" y="307" fill="#111827">status</text>
+<text x="832" y="307" text-anchor="end" fill="#b45309" font-size="11">choices</text>
+<rect x="621" y="314" width="218" height="22" fill="#f3f4f6"/>
+<text x="630" y="329" fill="#111827">created_at</text>
+<rect x="940" y="130" width="230" height="250" rx="6" fill="#ffffff" stroke="#be123c" stroke-width="2"/>
+<path d="M940,160 L940,136 Q940,130 946,130 L1164,130 Q1170,130 1170,136 L1170,160 Z" fill="#be123c"/>
+<text x="1055.0" y="150" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Consultation</text>
+<text x="950" y="175" fill="#111827" font-weight="bold">id</text>
+<text x="1162" y="175" text-anchor="end" fill="#be123c" font-size="11">PK</text>
+<rect x="941" y="182" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="197" fill="#111827">appointment_id</text>
+<text x="1162" y="197" text-anchor="end" fill="#be123c" font-size="11">FK·1:1</text>
+<text x="950" y="219" fill="#111827">diagnosis</text>
+<rect x="941" y="226" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="241" fill="#111827">symptoms</text>
+<text x="950" y="263" fill="#111827">observations</text>
+<rect x="941" y="270" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="285" fill="#111827">weight</text>
+<text x="1162" y="285" text-anchor="end" fill="#be123c" font-size="11">null</text>
+<text x="950" y="307" fill="#111827">blood_pressure</text>
+<rect x="941" y="314" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="329" fill="#111827">temperature</text>
+<text x="1162" y="329" text-anchor="end" fill="#be123c" font-size="11">null</text>
+<text x="950" y="351" fill="#111827">prescription</text>
+<rect x="941" y="358" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="373" fill="#111827">created_at</text>
+<rect x="940" y="430" width="230" height="184" rx="6" fill="#ffffff" stroke="#15803d" stroke-width="2"/>
+<path d="M940,460 L940,436 Q940,430 946,430 L1164,430 Q1170,430 1170,436 L1170,460 Z" fill="#15803d"/>
+<text x="1055.0" y="450" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Certificate</text>
+<text x="950" y="475" fill="#111827" font-weight="bold">id</text>
+<text x="1162" y="475" text-anchor="end" fill="#15803d" font-size="11">PK</text>
+<rect x="941" y="482" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="497" fill="#111827">consultation_id</text>
+<text x="1162" y="497" text-anchor="end" fill="#15803d" font-size="11">FK·1:1</text>
+<text x="950" y="519" fill="#111827">unique_code</text>
+<text x="1162" y="519" text-anchor="end" fill="#15803d" font-size="11">UK</text>
+<rect x="941" y="526" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="541" fill="#111827">admission_date</text>
+<text x="950" y="563" fill="#111827">text</text>
+<rect x="941" y="570" width="228" height="22" fill="#f3f4f6"/>
+<text x="950" y="585" fill="#111827">recipe</text>
+<text x="950" y="607" fill="#111827">medical_history</text>
+<text x="20" y="640" font-size="11" fill="#6b7280">PK = clave primaria · FK = clave foránea · UK = única · 1:1 = OneToOne · null = admite nulos</text>
+</svg>

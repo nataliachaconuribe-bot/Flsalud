@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>{{ patient }}</h1>
+    <a class="btn secondary" href="{% url 'patients' %}">← Volver a pacientes</a>
+</header>
+
+<section class="panel">
+    <h2>Datos del paciente</h2>
+    <p><b>Teléfono:</b> {{ patient.phone|default:'—' }}</p>
+    <p><b>Fecha de nacimiento:</b> {{ patient.birth_date|default:'—' }}</p>
+    <p><b>Correo:</b> {{ patient.user.email|default:'—' }}</p>
+    <p><b>Antecedentes médicos:</b></p>
+    <p class="muted">{{ patient.medical_history|default:'Sin antecedentes registrados.'|linebreaksbr }}</p>
+</section>
+
+<section class="panel" style="margin-top: 20px;">
+    <h2>Citas pendientes</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Médico</th>
+            <th>Estado</th>
+        </tr>
+
+        {% for a in pending %}
+        <tr>
+            <td>{{ a.date }}</td>
+            <td>{{ a.time|time:"H:i" }}</td>
+            <td>{{ a.doctor }}</td>
+            <td>{{ a.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No tiene citas pendientes.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="panel" style="margin-top: 20px;">
+    <h2>Historial de consultas</h2>
+
+    {% for c in history %}
+    <div class="row">
+        <div>
+            <b>{{ c.appointment.date }} · {{ c.appointment.time|time:"H:i" }}</b>
+            <span class="muted">— Dr(a). {{ c.appointment.doctor }}</span>
+            <p><b>Diagnóstico:</b> {{ c.diagnosis|linebreaksbr }}</p>
+            <p><b>Síntomas:</b> {{ c.symptoms|linebreaksbr }}</p>
+            {% if c.observations %}<p><b>Observaciones:</b> {{ c.observations|linebreaksbr }}</p>{% endif %}
+            {% if c.prescription %}<p><b>Receta:</b> {{ c.prescription|linebreaksbr }}</p>{% endif %}
+            {% if c.private_notes and c.appointment.doctor.user == user %}
+            <p><b>Nota reservada:</b> {{ c.private_notes|linebreaksbr }}</p>
+            {% endif %}
+            <p class="muted">
+                {% if c.weight %}Peso: {{ c.weight }} kg · {% endif %}
+                {% if c.blood_pressure %}Presión: {{ c.blood_pressure }} · {% endif %}
+                {% if c.temperature %}Temperatura: {{ c.temperature }} °C{% endif %}
+            </p>
+            <p class="muted">Registrado el {{ c.created_at|date:"d/m/Y H:i" }} por Dr(a). {{ c.appointment.doctor }}</p>
+        </div>
+
+        {% if c.certificate %}
+        <a class="btn secondary" href="{% url 'certificate_pdf' c.certificate.pk %}">Ver PDF</a>
+        {% endif %}
+    </div>
+    {% empty %}
+    <p class="muted">Este paciente no tiene consultas registradas.</p>
+    {% endfor %}
+</section>
+{% endblock %}

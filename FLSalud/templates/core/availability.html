@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <h1>Disponibilidad de médicos</h1>
+    <a class="btn" href="{% url 'create_appointment' %}">+ Nueva cita</a>
+</header>
+
+<section class="panel">
+    <form method="get">
+        <label>Fecha</label>
+        <input type="date" name="date" value="{{ day|date:'Y-m-d' }}">
+        <button class="btn">Ver</button>
+    </form>
+</section>
+
+{% for r in rows %}
+<section class="panel" style="margin-top: 20px;">
+    <h2>Dr(a). {{ r.doctor }}</h2>
+
+    <h3>Citas ocupadas</h3>
+    {% for a in r.appointments %}
+    <div class="row">
+        <b>{{ a.time|time:"H:i" }} ({{ a.duration }} min)</b>
+        <span>{{ a.patient }} · {{ a.status }}</span>
+    </div>
+    {% empty %}
+    <p class="muted">Sin citas este día.</p>
+    {% endfor %}
+
+    <h3>Horarios libres</h3>
+    {% if r.free %}
+    <p>
+        {% for t in r.free %}
+        <span class="btn secondary">{{ t|time:"H:i" }}</span>
+        {% endfor %}
+    </p>
+    {% else %}
+    <p class="muted">No hay horarios libres.</p>
+    {% endif %}
+</section>
+{% empty %}
+<section class="panel">
+    <p class="muted">No hay médicos disponibles.</p>
+</section>
+{% endfor %}
+{% endblock %}

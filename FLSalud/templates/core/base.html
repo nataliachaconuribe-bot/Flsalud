@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FLSalud</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <aside>
+        <div class="brand">FL<span>Salud</span></div>
+
+        <a href="{% url 'dashboard' %}">Inicio</a>
+        <a href="{% url 'appointments' %}">Citas</a>
+
+        {% if role == 'admin' or role == 'receptionist' %}
+        <a href="{% url 'availability' %}">Disponibilidad</a>
+        {% endif %}
+
+        {% if role == 'admin' or role == 'doctor' or role == 'receptionist' %}
+        <a href="{% url 'patients' %}">Pacientes</a>
+        {% endif %}
+
+        {% if role == 'admin' or role == 'doctor' %}
+        <a href="{% url 'consultations' %}">Consultas</a>
+        {% endif %}
+
+        {% if role == 'admin' or role == 'doctor' or role == 'patient' %}
+        <a href="{% url 'certificates' %}">Constancias</a>
+        {% endif %}
+
+        <a href="{% url 'profile' %}">Mi perfil</a>
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </aside>
+
+    <main>
+    {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+    {% if user.is_authenticated %}
+    </main>
+    {% endif %}
+
+</body>
+</html>

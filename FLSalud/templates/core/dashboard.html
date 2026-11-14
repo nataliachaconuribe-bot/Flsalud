@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header>
+    <div>
+        <small>Panel de control</small>
+        <h1>Buenos días 👋</h1>
+    </div>
+    <span class="userchip">👤 {{ user.get_full_name|default:user.username }}</span>
+</header>
+
+<div class="cards">
+    <div class="card">Citas de hoy<strong>{{ appointments|length }}</strong></div>
+
+    {% if role == 'admin' or role == 'receptionist' %}
+    <div class="card">Pacientes<strong>{{ patients }}</strong></div>
+    <div class="card">Consultas<strong>{{ consultations }}</strong></div>
+    <div class="card">Constancias<strong>{{ certificates }}</strong></div>
+    {% endif %}
+</div>
+
+<div class="two">
+
+    <section class="panel">
+        <h2>Agenda de hoy</h2>
+
+        {% for a in appointments %}
+        <div class="row">
+            <b>{{ a.time }}</b>
+            <span>{{ a.patient }} · {{ a.status }}</span>
+        </div>
+        {% empty %}
+        <p class="muted">No hay citas para hoy.</p>
+        {% endfor %}
+
+        <a class="btn" href="{% url 'appointments' %}">Ver agenda completa</a>
+    </section>
+
+    <section class="panel">
+        <h2>Acciones rápidas</h2>
+
+        {% if role == 'admin' or role == 'receptionist' %}
+        <a class="btn" href="{% url 'create_appointment' %}">Nueva cita</a>
+        {% endif %}
+
+        {% if role == 'admin' or role == 'doctor' or role == 'receptionist' %}
+        <a class="btn secondary" href="{% url 'patients' %}">Buscar paciente</a>
+        {% endif %}
+
+        {% if role == 'admin' or role == 'doctor' %}
+        <a class="btn secondary" href="{% url 'consultations' %}">Registrar consulta</a>
+        {% endif %}
+
+        {% if role == 'patient' %}
+        <a class="btn secondary" href="{% url 'certificates' %}">Mis constancias</a>
+        {% endif %}
+    </section>
+
+</div>
+{% endblock %}
